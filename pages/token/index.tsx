@@ -37,6 +37,7 @@ export default function TokenPage() {
     
     // 动画循环
     function animate() {
+      if (!ctx || !canvas) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       // 渲染粒子
