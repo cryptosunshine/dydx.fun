@@ -1,0 +1,146 @@
+.container {
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  padding: 0 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #fff;
+  margin: 0;
+  text-transform: uppercase;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  font-family: 'Press Start 2P', system-ui, sans-serif;
+}
+
+.backButton, .refreshButton {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #b8cdc2;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: transparent;
+  color: #b8cdc2;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.backButton:hover, .refreshButton:hover {
+  background-color: #b8cdc2;
+  color: #000;
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+.content {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: #2a2a2a;
+  border-radius: 8px;
+  border: 1px solid #b8cdc2;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.2);
+}
+
+.tableContainer {
+  overflow-x: auto;
+  padding: 1rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 8px;
+  text-align: left;
+}
+
+.table th {
+  padding: 1rem;
+  background-color: #333;
+  font-weight: 600;
+  color: #b8cdc2;
+  text-transform: uppercase;
+  border-bottom: 2px solid #b8cdc2;
+}
+
+.table td {
+  padding: 1rem;
+  background-color: #222;
+  border-bottom: 1px solid #333;
+}
+
+.rank {
+  font-weight: bold;
+  width: 80px;
+  color: #b8cdc2;
+  font-size: 1.2rem;
+}
+
+.user {
+  color: #fff;
+}
+
+.score {
+  font-weight: bold;
+  color: #b8cdc2;
+  font-size: 1.2rem;
+}
+
+.highlight {
+  background-color: #1a472a !important;
+}
+
+.currentUser {
+  color: #b8cdc2;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.loading, .empty {
+  padding: 3rem;
+  text-align: center;
+  color: #b8cdc2;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+}
+
+.footer {
+  max-width: 1200px;
+  margin: 2rem auto 0;
+  text-align: center;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .table th, .table td {
+    padding: 0.75rem;
+  }
+
+  .rank {
+    width: 60px;
+  }
+} 

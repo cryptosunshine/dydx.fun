@@ -3,6 +3,8 @@ interface Window {
   ethereum: any
   gtag: any,
   document: any
+  _scriptsLoaded?: boolean;
+  highscore?: number;
 }
 
 declare global {

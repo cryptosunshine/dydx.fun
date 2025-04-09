@@ -12,7 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
   height: 100%;
-  verflow: hidden;
+  overflow: hidden;
   touch-action: none;
   -ms-touch-action: none;
 }
@@ -25,4 +25,123 @@ canvas {
   touch-action-delay: none;
   touch-action: none;
   -ms-touch-action: none;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255,255,255,.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.menu-container {
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+  background: rgba(29, 29, 42, 0.85);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  
+  &.landscape {
+    padding: 20px 15px;
+    gap: 15px;
+    
+    > div {
+      width: 100%;
+      text-align: center;
+    }
+  }
+  
+  &.portrait {
+    padding: 12px 20px;
+    gap: 12px;
+  }
+}
+
+.menu-button {
+  padding: 10px 16px;
+  border-radius: 8px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  outline: none;
+  
+  &:hover {
+    transform: translateY(-1px);
+    filter: brightness(1.1);
+  }
+  
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.header-button {
+  .menu-button();
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+}
+
+.connect-button {
+  .menu-button();
+  background: linear-gradient(135deg, #9f95ea, #9f95ea);
+  color: white;
+}
+
+.disconnect-button {
+  .menu-button();
+  background: linear-gradient(135deg, #f44336, #e53935);
+  color: white;
+}
+
+.rank-button {
+  .menu-button();
+  background: linear-gradient(135deg, #9C27B0, #8e24aa);
+  color: white;
+}
+
+.wallet-info {
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  .menu-button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+  
+  .menu-container {
+    &.portrait {
+      padding: 10px 15px;
+      gap: 8px;
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.menu-container {
+  animation: fadeIn 0.3s ease;
 }

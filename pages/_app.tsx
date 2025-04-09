@@ -1,86 +1,76 @@
-import { useState, useEffect } from 'react'
-import type { AppProps } from 'next/app'
-import { NextRouter, useRouter } from 'next/router';
-import Head from 'next/head'
+import { useState, useEffect } from "react";
+import type { AppProps } from "next/app";
+import { NextRouter, useRouter } from "next/router";
+import Head from "next/head";
 import "styles/app.less";
-import { IntlProvider } from 'react-intl'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import * as localeTypes from '../locales/types';
-import locales from '../locales'
-import Layout from '@/components/layout'
-
-import '@rainbow-me/rainbowkit/styles.css';
-import {
-  RainbowKitProvider,
-  getDefaultWallets,
-  connectorsForWallets,
-} from '@rainbow-me/rainbowkit';
-import {
-  argentWallet,
-  trustWallet,
-  ledgerWallet,
-} from '@rainbow-me/rainbowkit/wallets';
-import { configureChains, createConfig, WagmiConfig } from 'wagmi';
-import {
-  mainnet,
-  goerli,
-} from 'wagmi/chains';
-import { publicProvider } from 'wagmi/providers/public';
-
-const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [
-    mainnet,
-    goerli,
-  ],
-  [publicProvider()]
-);
-
-const projectId = '9b0bcbf5dbce1022f0816c703811dd1c';
-
-const { wallets } = getDefaultWallets({
-  appName: 'dydx.fun',
-  projectId,
-  chains,
-});
-
-const demoAppInfo = {
-  appName: 'dydx.fun',
-};
-
-const connectors = connectorsForWallets([
-  ...wallets,
-  {
-    groupName: 'Other',
-    wallets: [
-      argentWallet({ projectId, chains }),
-      trustWallet({ projectId, chains }),
-      ledgerWallet({ projectId, chains }),
-    ],
-  },
-]);
-
-const wagmiConfig = createConfig({
-  autoConnect: true,
-  connectors,
-  publicClient,
-  webSocketPublicClient,
-});
+import { IntlProvider } from "react-intl";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import * as localeTypes from "../locales/types";
+import locales from "../locales";
+import Layout from "@/components/layout";
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient();
   const router = useRouter();
+  const [isScriptsLoaded, setIsScriptsLoaded] = useState(false);
 
-  // const [loading, setLoading] = useState(true);
-  // useEffect(() => {
-  //   // 在页面组件加载完成后，设置 loading 状态为 false
-  //   setLoading(false);
-  // }, []);
+  useEffect(() => {
+    // 添加一个标记，防止重复加载
+    if (window._scriptsLoaded) {
+      setIsScriptsLoaded(true);
+      return;
+    }
+
+    const requiredScripts = [
+      '/jquery-2.1.1.min.js',
+      '/c2runtime.min.js?v=1.1',
+      '/xyxUtil.js'
+    ];
+
+    let loadedCount = 0;
+    const scriptElements: HTMLScriptElement[] = [];
+
+    const handleScriptLoad = () => {
+      loadedCount++;
+      if (loadedCount === requiredScripts.length) {
+        window._scriptsLoaded = true; // 设置全局标记
+        setIsScriptsLoaded(true);
+      }
+    };
+
+    const handleScriptError = (scriptSrc: string) => {
+      console.error(`Failed to load script: ${scriptSrc}`);
+      // 可以在这里添加重试逻辑或错误提示
+    };
+
+    // 创建并加载脚本
+    requiredScripts.forEach((src) => {
+      const script = document.createElement('script');
+      script.src = src;
+      script.async = true;
+      script.onload = handleScriptLoad;
+      script.onerror = () => handleScriptError(src);
+      scriptElements.push(script);
+      document.body.appendChild(script);
+    });
+
+    // 清理函数
+    return () => {
+      scriptElements.forEach(script => {
+        document.body.removeChild(script);
+      });
+    };
+  }, []);
 
   // 多语言配置
-  const DefaultLocale = 'en';
-  const { locale = DefaultLocale, defaultLocale, pathname }: NextRouter = router;
+  const DefaultLocale = "en";
+  const {
+    locale = DefaultLocale,
+    defaultLocale,
+    pathname,
+  }: NextRouter = router;
   const localeCopy: localeTypes.LocaleData = locales[locale];
-  const messages = { ...localeCopy[pathname], ...localeCopy['share'] }
+  const messages = { ...localeCopy[pathname], ...localeCopy["share"] };
 
   useEffect(() => {
     //读取本地存储的主题
@@ -89,37 +79,28 @@ const App = ({ Component, pageProps }: AppProps) => {
       document.documentElement.classList.add(theme);
     }
 
-
     const handleRouteChange = (url: any) => {
       if (window.gtag) {
-        window.gtag('config', process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
+        window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
           page_path: url,
-        })
+        });
       }
-    }
-    router.events.on('routeChangeComplete', handleRouteChange)
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
-      router.events.off('routeChangeComplete', handleRouteChange)
-    }
-  }, [router.events])
-
-
-  // 在 loading 为 true 或者当前路由不是根路径时，不显示任何内容
-  // if (loading || router.pathname !== '/') return null;
-
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
     <>
       <Head>
-        <title></title>
+        <title>Block Hero</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="title" content="" />
-        <meta name="keywords" content="" />
-        <meta name="description" content="" />
+        <meta name="title" content="BlockHero" />
+        <meta name="keywords" content="BlockHero" />
+        <meta name="description" content="BlockHero" />
         <link rel="icon" href="/favicon.ico" />
-        <script async src="/jquery-2.1.1.min.js"></script>
-        <script async src="/c2runtime.min.js?v=1.1"></script>
-        <script async src="/xyxUtil.js"></script>
       </Head>
       <QueryClientProvider client={queryClient}>
         <IntlProvider
@@ -127,18 +108,31 @@ const App = ({ Component, pageProps }: AppProps) => {
           defaultLocale={defaultLocale}
           messages={messages}
         >
-          <WagmiConfig config={wagmiConfig}>
-            <RainbowKitProvider appInfo={demoAppInfo} chains={chains}>
-              <Layout>
-                <Component {...pageProps} />
-              </Layout>
-            </RainbowKitProvider>
-          </WagmiConfig>
+          <Layout>
+            {isScriptsLoaded ? (
+              <Component {...pageProps} />
+            ) : (
+              <div style={{
+                height: '100vh',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                background: '#13131c',
+                color: '#fff'
+              }}>
+                <div style={{
+                  textAlign: 'center'
+                }}>
+                  <div className="loading-spinner"></div>
+                  <div style={{ marginTop: '20px' }}>Loading resources...</div>
+                </div>
+              </div>
+            )}
+          </Layout>
         </IntlProvider>
       </QueryClientProvider>
     </>
-  )
-}
+  );
+};
 
-export default App
-
+export default App;
