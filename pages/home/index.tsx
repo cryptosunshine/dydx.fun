@@ -8,7 +8,6 @@ export default function Home() {
   const t = (id: string) => formatMessage({ id })
 
   useEffect(() => {
-    console.log('init')
     // Size the canvas to fill the browser viewport.
     $(window).resize(function () {
       (window as any).cr_sizeCanvas($(window).width(), $(window).height());

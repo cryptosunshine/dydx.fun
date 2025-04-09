@@ -48,7 +48,7 @@ export default function Rankings({ initialScores }: any) {
     // 客户端实时更新
     const fetchScores = async () => {
       try {
-        const response = await fetch('http://api.blockhero.win/score');
+        const response = await fetch('https://api.blockhero.win/score');
         const data = await response.json();
         setScores(data);
         setLoading(false);

@@ -1,14 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Connection,
-  PublicKey,
-  Transaction,
-  TransactionInstruction,
-  SystemProgram,
-  Keypair,
-} from "@solana/web3.js";
 import { useRouter } from "next/router";
-
 interface GameMenuProps {
   onScoreUpdate?: () => void;
 }
@@ -28,6 +19,7 @@ export default function GameMenu({ onScoreUpdate }: GameMenuProps) {
     width: 0,
     height: 0,
   });
+  const router = useRouter();
 
   useEffect(() => {
     // 在组件挂载时设置初始尺寸
@@ -282,13 +274,20 @@ export default function GameMenu({ onScoreUpdate }: GameMenuProps) {
           className="rank-button"
           onClick={() => {
             if (walletAddress) {
-              window.open("/rankings", "_blank");
+              router.push("/rankings");
             } else {
               alert("Please connect your wallet first!");
             }
           }}
         >
           Rankings
+        </div>
+
+        <div
+          className="token-button"
+          onClick={() => router.push("/token")}
+        >
+          🪙 $BHW
         </div>
       </div>
     </>

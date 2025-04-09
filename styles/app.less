@@ -31,14 +31,16 @@ canvas {
   display: inline-block;
   width: 50px;
   height: 50px;
-  border: 3px solid rgba(255,255,255,.3);
+  border: 3px solid rgba(255, 255, 255, 0.3);
   border-radius: 50%;
   border-top-color: #fff;
   animation: spin 1s ease-in-out infinite;
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .menu-container {
@@ -46,17 +48,17 @@ canvas {
   backdrop-filter: blur(8px);
   background: rgba(29, 29, 42, 0.85);
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
-  
+
   &.landscape {
     padding: 20px 15px;
     gap: 15px;
-    
+
     > div {
       width: 100%;
       text-align: center;
     }
   }
-  
+
   &.portrait {
     padding: 12px 20px;
     gap: 12px;
@@ -73,12 +75,12 @@ canvas {
   font-weight: 500;
   border: none;
   outline: none;
-  
+
   &:hover {
     transform: translateY(-1px);
     filter: brightness(1.1);
   }
-  
+
   &:active {
     transform: translateY(1px);
   }
@@ -86,7 +88,7 @@ canvas {
 
 .header-button {
   .menu-button();
-  background: linear-gradient(135deg, #4CAF50, #45a049);
+  background: linear-gradient(135deg, #4caf50, #45a049);
   color: white;
 }
 
@@ -104,8 +106,14 @@ canvas {
 
 .rank-button {
   .menu-button();
-  background: linear-gradient(135deg, #9C27B0, #8e24aa);
+  background: linear-gradient(135deg, #9c27b0, #8e24aa);
   color: white;
+}
+
+.token-button {
+  .menu-button();
+  background: linear-gradient(135deg, gold, gold);
+  color: black;
 }
 
 .wallet-info {
@@ -122,7 +130,7 @@ canvas {
     padding: 8px 12px;
     font-size: 13px;
   }
-  
+
   .menu-container {
     &.portrait {
       padding: 10px 15px;

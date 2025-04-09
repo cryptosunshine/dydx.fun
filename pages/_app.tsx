@@ -97,9 +97,9 @@ const App = ({ Component, pageProps }: AppProps) => {
       <Head>
         <title>Block Hero</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="title" content="BlockHero" />
-        <meta name="keywords" content="BlockHero" />
-        <meta name="description" content="BlockHero" />
+        <meta name="title" content="BlockHero - The Ultimate Blockchain Game" />
+        <meta name="keywords" content="BlockHero, blockchain game, Solana, puzzle game, NFT game, crypto gaming, $BHW token" />
+        <meta name="description" content="BlockHero is a blockchain game where players can compete for high scores on the Solana blockchain,  and participate in the growing crypto gaming ecosystem." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <QueryClientProvider client={queryClient}>
