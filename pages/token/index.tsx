@@ -13,45 +13,37 @@ export default function TokenPage() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
     
-    // 设置画布大小为全屏
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
-    // 这里可以添加粒子效果、动画等
-    // 下面是一个简单的粒子效果示例
-    
+
     const particles: any[] = [];
     const particleCount = 100;
     
-    // 创建粒子
     for (let i = 0; i < particleCount; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         radius: Math.random() * 5 + 1,
-        color: `rgba(255, 215, 0, ${Math.random() * 0.5 + 0.25})`, // 金色半透明
+        color: `rgba(255, 215, 0, ${Math.random() * 0.5 + 0.25})`,
         speedX: Math.random() * 3 - 1.5,
         speedY: Math.random() * 3 - 1.5
       });
     }
     
-    // 动画循环
     function animate() {
       if (!ctx || !canvas) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
-      // 渲染粒子
       particles.forEach(p => {
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
         ctx.fillStyle = p.color;
         ctx.fill();
         
-        // 更新位置
         p.x += p.speedX;
         p.y += p.speedY;
         
-        // 边界检查
         if (p.x < 0 || p.x > canvas.width) p.speedX *= -1;
         if (p.y < 0 || p.y > canvas.height) p.speedY *= -1;
       });
@@ -61,7 +53,6 @@ export default function TokenPage() {
     
     animate();
     
-    // 监听窗口大小变化
     const handleResize = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
@@ -96,9 +87,9 @@ export default function TokenPage() {
         </div>
         
         <div className="token-buttons">
-          {/* <button className="primary-button" onClick={() => window.open("https://pump.fun/coin/", "_blank")}>
+          <button className="primary-button" onClick={() => window.open("https://pump.fun/coin/EeHpSh5CggqMokg2SE8yeY3CtSXG6H6mZTLAMJ7ppump", "_blank")}>
             Buy on Pump.fun
-          </button> */}
+          </button>
           <button className="secondary-button" onClick={() => router.push("/")}>
             Back to Game
           </button>

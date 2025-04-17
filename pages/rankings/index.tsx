@@ -8,19 +8,6 @@ interface ScoreRecord {
   timestamp: number;
 }
 
-export async function getStaticProps() {
-  // 获取初始数据用于 SSG
-  const response = await fetch('https://api.blockhero.win/score');
-  const initialScores = await response.json();
-
-  return {
-    props: {
-      initialScores,
-    },
-    // 每小时重新生成页面
-    revalidate: 3600,
-  };
-}
 
 export default function Rankings({ initialScores }: any) {
   const [scores, setScores] = useState(initialScores);
