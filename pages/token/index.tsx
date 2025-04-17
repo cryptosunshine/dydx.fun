@@ -77,7 +77,7 @@ export default function TokenPage() {
         <div className="token-info">
           <div className="token-info-item">
             <h3>Token Mint Address</h3>
-            <p className="token-address">Coming soon</p>
+            <p className="token-address">EeHpSh5CggqMokg2SE8yeY3CtSXG6H6mZTLAMJ7ppump</p>
           </div>
           
           <div className="token-info-item">
