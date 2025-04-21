@@ -8,15 +8,23 @@ export default function Home() {
   const t = (id: string) => formatMessage({ id })
 
   useEffect(() => {
+    // 函数：调整画布大小以适应当前视口
+    const resizeCanvas = () => {
+      if (typeof window !== 'undefined' && (window as any).cr_sizeCanvas) {
+        (window as any).cr_sizeCanvas($(window).width(), $(window).height());
+      }
+    };
+
     // Size the canvas to fill the browser viewport.
-    $(window).resize(function () {
-      (window as any).cr_sizeCanvas($(window).width(), $(window).height());
-    });
+    $(window).resize(resizeCanvas);
 
     // Start the Construct 2 project running on window load.
     $(document).ready(function () {
       // Create new runtime using the c2canvas
       (window as any).cr_createRuntime("c2canvas");
+      
+      // 页面加载完成后立即调整画布大小
+      resizeCanvas();
     });
 
     // Pause and resume on page becoming visible/invisible

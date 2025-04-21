@@ -255,9 +255,9 @@ export default function GameMenu({ onScoreUpdate }: GameMenuProps) {
             <div className="wallet-info">
               {`${walletAddress.slice(0, 4)}...${walletAddress.slice(-4)}`}
             </div>
-            <div className="disconnect-button" onClick={disconnectWallet}>
+            {/* <div className="disconnect-button" onClick={disconnectWallet}>
               Disconnect
-            </div>
+            </div> */}
           </>
         ) : (
           <div className="connect-button" onClick={connectWallet}>
