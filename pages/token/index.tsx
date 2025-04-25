@@ -131,8 +131,10 @@ export default function TokenPage() {
         .token-title {
           font-size: 4rem;
           margin-bottom: 0.5rem;
-          color: gold;
-          text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+              background-image: linear-gradient(245.22deg, rgb(255, 47, 200) 7.97%, rgb(255, 177, 43) 49.17%, rgb(211, 216, 57) 92.1%);
+    color: transparent;
+    background-clip: text;
+          text-shadow: 0 0 10px rgba(140, 110, 239, 0.2);
           animation: pulse 2s infinite;
         }
         
@@ -155,13 +157,13 @@ export default function TokenPage() {
           padding: 1rem;
           border-radius: 10px;
           backdrop-filter: blur(5px);
-          border: 1px solid rgba(255, 215, 0, 0.3);
+          border: 1px solid rgba(140, 110, 239, 0.2);
         }
         
         .token-address {
           word-break: break-all;
           font-family: monospace;
-          background: rgba(255, 255, 255, 0.1);
+          background: rgba(140, 110, 239, 0.2);
           padding: 0.5rem;
           border-radius: 5px;
         }
@@ -187,7 +189,7 @@ export default function TokenPage() {
         }
         
         .primary-button:hover {
-          background: #ffcc00;
+          background: rgba(140, 110, 239, 0.2);
           transform: translateY(-3px);
           box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
