@@ -77,7 +77,7 @@ export default function TokenPage() {
         <div className="token-info">
           <div className="token-info-item">
             <h3>Token Mint Address</h3>
-            <p className="token-address">Coming soon</p>
+            <p className="token-address">7kZejVdU1sX7a8MpPedNomw3EkRGcPWH5nVKhJS8Gray</p>
           </div>
           
           <div className="token-info-item">
@@ -87,9 +87,9 @@ export default function TokenPage() {
         </div>
         
         <div className="token-buttons">
-          {/* <button className="primary-button" onClick={() => window.open("https://pump.fun/coin/", "_blank")}>
-            Buy on Pump.fun
-          </button> */}
+          <button className="primary-button" onClick={() => window.open("https://raydium.io/launchpad/token/?mint=7kZejVdU1sX7a8MpPedNomw3EkRGcPWH5nVKhJS8Gray", "_blank")}>
+            Buy on Raydium LaunchLab
+          </button>
           <button className="secondary-button" onClick={() => router.push("/")}>
             Back to Game
           </button>
