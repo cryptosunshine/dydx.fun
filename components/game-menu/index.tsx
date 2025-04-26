@@ -287,7 +287,7 @@ export default function GameMenu({ onScoreUpdate }: GameMenuProps) {
           className="token-button"
           onClick={() => router.push("/token")}
         >
-          🪙<div > $BHW</div>
+          🪙<div > $BlockHero</div>
         </div>
       </div>
     </>

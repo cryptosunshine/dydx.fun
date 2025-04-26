@@ -65,19 +65,44 @@ export default function TokenPage() {
   return (
     <div className="token-page">
       <Head>
-        <title>$BHW Token | BlockHero</title>
+        <title>$BlockHero Token | BlockHero</title>
       </Head>
 
       <canvas ref={canvasRef} className="particle-background"></canvas>
       
       <div className="token-content">
-        <h1 className="token-title">$BHW</h1>
+        <h1 className="token-title">$BlockHero</h1>
         <p className="token-description">The official token of BlockHero game ecosystem</p>
+        
+        <div className="token-economics">
+          <h2>Token Economics</h2>
+          <ul>
+            <li>Total Supply: 1 Billion $BlockHero</li>
+            <li>Team Allocation: 5% (50 Million $BlockHero)</li>
+            <li>Team Vesting: 1-year lock after launch</li>
+          </ul>
+        </div>
+        
+        <div className="token-roadmap">
+          <h2>Roadmap</h2>
+          <div className="roadmap-item">
+            <h3>Phase 1</h3>
+            <p>Expand game content, add more game modes and characters</p>
+          </div>
+          <div className="roadmap-item">
+            <h3>Phase 2</h3>
+            <p>Establish in-game economy system, integrate $BlockHero token functionality</p>
+          </div>
+          <div className="roadmap-item">
+            <h3>Phase 3</h3>
+            <p>Develop game-focused public chain to improve transaction processing and user experience</p>
+          </div>
+        </div>
         
         <div className="token-info">
           <div className="token-info-item">
             <h3>Token Mint Address</h3>
-            <p className="token-address">7kZejVdU1sX7a8MpPedNomw3EkRGcPWH5nVKhJS8Gray</p>
+            <p className="token-address">coming soon</p>
           </div>
           
           <div className="token-info-item">
@@ -87,8 +112,8 @@ export default function TokenPage() {
         </div>
         
         <div className="token-buttons">
-          <button className="primary-button" onClick={() => window.open("https://raydium.io/launchpad/token/?mint=7kZejVdU1sX7a8MpPedNomw3EkRGcPWH5nVKhJS8Gray", "_blank")}>
-            Buy on Raydium LaunchLab
+          <button className="primary-button" onClick={() => window.open("https://pump.fun/", "_blank")}>
+            pump.fun
           </button>
           <button className="secondary-button" onClick={() => router.push("/")}>
             Back to Game
@@ -142,6 +167,14 @@ export default function TokenPage() {
           font-size: 1.5rem;
           margin-bottom: 2rem;
           max-width: 600px;
+        }
+        
+        .token-economics {
+          margin-bottom: 2rem;
+        }
+        
+        .token-roadmap {
+          margin-bottom: 2rem;
         }
         
         .token-info {
