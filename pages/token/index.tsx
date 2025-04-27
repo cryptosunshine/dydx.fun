@@ -102,7 +102,7 @@ export default function TokenPage() {
         <div className="token-info">
           <div className="token-info-item">
             <h3>Token Mint Address</h3>
-            <p className="token-address">J7a6YHpWg5HDm9CY9vTXGsspCCFLFMEneKLsLgmKpump</p>
+            <p className="token-address">coming soon</p>
           </div>
           
           <div className="token-info-item">
@@ -112,8 +112,8 @@ export default function TokenPage() {
         </div>
         
         <div className="token-buttons">
-          <button className="primary-button" onClick={() => window.open("https://pump.fun/coin/J7a6YHpWg5HDm9CY9vTXGsspCCFLFMEneKLsLgmKpump", "_blank")}>
-            pump.fun
+          <button className="primary-button" onClick={() => window.open("/", "_blank")}>
+            coming soon
           </button>
           <button className="secondary-button" onClick={() => router.push("/")}>
             Back to Game
