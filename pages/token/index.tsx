@@ -65,23 +65,14 @@ export default function TokenPage() {
   return (
     <div className="token-page">
       <Head>
-        <title>$BlockHero Token | BlockHero</title>
+        <title>$BLOCKH Token | BlockHero</title>
       </Head>
 
       <canvas ref={canvasRef} className="particle-background"></canvas>
       
       <div className="token-content">
-        <h1 className="token-title">$BlockHero</h1>
-        <p className="token-description">The official token of BlockHero game ecosystem</p>
-        
-        <div className="token-economics">
-          <h2>Token Economics</h2>
-          <ul>
-            <li>Total Supply: 1 Billion $BlockHero</li>
-            <li>Team Allocation: 5% (50 Million $BlockHero)</li>
-            <li>Team Vesting: 1-year lock after launch</li>
-          </ul>
-        </div>
+        <h1 className="token-title">$BLOCKH</h1>
+        <p className="token-description">The official token of BLOCKH game ecosystem</p>
         
         <div className="token-roadmap">
           <h2>Roadmap</h2>
@@ -91,7 +82,7 @@ export default function TokenPage() {
           </div>
           <div className="roadmap-item">
             <h3>Phase 2</h3>
-            <p>Establish in-game economy system, integrate $BlockHero token functionality</p>
+            <p>Establish in-game economy system, integrate $BLOCKH token functionality</p>
           </div>
           <div className="roadmap-item">
             <h3>Phase 3</h3>
