@@ -65,14 +65,14 @@ export default function TokenPage() {
   return (
     <div className="token-page">
       <Head>
-        <title>$BHC Token | BlockHero</title>
+        <title>$BHJ Token | BlockHero</title>
       </Head>
 
       <canvas ref={canvasRef} className="particle-background"></canvas>
       
       <div className="token-content">
-        <h1 className="token-title">$BHC</h1>
-        <p className="token-description">The official token of BHC game ecosystem</p>
+        <h1 className="token-title">$BlockHeroJup</h1>
+        <p className="token-description">Just a Game</p>
         
         <div className="token-info">
           <div className="token-info-item">
