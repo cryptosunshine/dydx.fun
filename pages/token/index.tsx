@@ -77,7 +77,7 @@ export default function TokenPage() {
         <div className="token-info">
           <div className="token-info-item">
             <h3>Token Mint Address</h3>
-            <p className="token-address">Coming Soon</p>
+            <p className="token-address">3rdBzcQNdbVKTPNgjELDvbZt8h1P9ghTcncNPzZxjups</p>
           </div>
           
           <div className="token-info-item">
@@ -87,7 +87,9 @@ export default function TokenPage() {
         </div>
         
         <div className="token-buttons">
-     
+        <button className="primary-button" onClick={() => window.open("https://jup.ag/studio/3rdBzcQNdbVKTPNgjELDvbZt8h1P9ghTcncNPzZxjups", "_blank")}>
+            Jupiter Studio
+          </button>
           <button className="secondary-button" onClick={() => router.push("/")}>
             Back to Game
           </button>
