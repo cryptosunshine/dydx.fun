@@ -65,35 +65,19 @@ export default function TokenPage() {
   return (
     <div className="token-page">
       <Head>
-        <title>$BLOCKH Token | BlockHero</title>
+        <title>$BHC Token | BlockHero</title>
       </Head>
 
       <canvas ref={canvasRef} className="particle-background"></canvas>
       
       <div className="token-content">
-        <h1 className="token-title">$BLOCKH</h1>
-        <p className="token-description">The official token of BLOCKH game ecosystem</p>
-        
-        <div className="token-roadmap">
-          <h2>Roadmap</h2>
-          <div className="roadmap-item">
-            <h3>Phase 1</h3>
-            <p>Expand game content, add more game modes and characters</p>
-          </div>
-          <div className="roadmap-item">
-            <h3>Phase 2</h3>
-            <p>Establish in-game economy system, integrate $BLOCKH token functionality</p>
-          </div>
-          <div className="roadmap-item">
-            <h3>Phase 3</h3>
-            <p>Develop game-focused public chain to improve transaction processing and user experience</p>
-          </div>
-        </div>
+        <h1 className="token-title">$BHC</h1>
+        <p className="token-description">The official token of BHC game ecosystem</p>
         
         <div className="token-info">
           <div className="token-info-item">
             <h3>Token Mint Address</h3>
-            <p className="token-address">29UvPsa9keM9PaZ5fKP4PeGMECftEUgfSgH4tBMZpump</p>
+            <p className="token-address">Coming Soon</p>
           </div>
           
           <div className="token-info-item">
@@ -103,9 +87,7 @@ export default function TokenPage() {
         </div>
         
         <div className="token-buttons">
-          <button className="primary-button" onClick={() => window.open("https://pump.fun/coin/29UvPsa9keM9PaZ5fKP4PeGMECftEUgfSgH4tBMZpump", "_blank")}>
-            Pump.fun
-          </button>
+     
           <button className="secondary-button" onClick={() => router.push("/")}>
             Back to Game
           </button>
