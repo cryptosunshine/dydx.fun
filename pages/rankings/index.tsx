@@ -9,6 +9,9 @@ interface ScoreRecord {
 }
 
 
+const DAILY_POOL = 100000;
+const REWARD_DISTRIBUTION = [0.3, 0.2, 0.15, 0.1, 0.08, 0.06, 0.05, 0.03, 0.02, 0.01];
+
 export default function Rankings({ initialScores }: any) {
   const [scores, setScores] = useState(initialScores);
   const [loading, setLoading] = useState<boolean>(true);
@@ -59,6 +62,13 @@ export default function Rankings({ initialScores }: any) {
 
       </div>
 
+      <div className={styles.seasonBanner}>
+        <h2 className={styles.seasonTitle}>🏆 Season 1 - Leaderboard</h2>
+        <p className={styles.seasonDescription}>
+          Duration: 7 Days | Airdrop rewards will be distributed based on final rankings
+        </p>
+      </div>
+
       <div className={styles.content}>
         {loading ? (
           <div className={styles.loading}>Loading...</div>
@@ -72,6 +82,7 @@ export default function Rankings({ initialScores }: any) {
                   <th>Rank</th>
                   <th>Player</th>
                   <th>Score</th>
+                  <th>Expected Rewards</th>
                 </tr>
               </thead>
               <tbody>
@@ -96,6 +107,11 @@ export default function Rankings({ initialScores }: any) {
                       )}
                     </td>
                     <td className={styles.score}>{record.score}</td>
+                    <td className={styles.expectedRewards}>
+                      {index < REWARD_DISTRIBUTION.length
+                        ? `${(DAILY_POOL * REWARD_DISTRIBUTION[index]).toLocaleString()} HERO`
+                        : "-"}
+                    </td>
                   </tr>
                 ))}
               </tbody>

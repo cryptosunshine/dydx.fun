@@ -42,6 +42,35 @@
   box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
 }
 
+.seasonBanner {
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, rgba(129, 108, 249, 0.2), rgba(171, 196, 255, 0.2));
+  border-radius: 12px;
+  border: 2px solid #abc4ff;
+  text-align: center;
+  box-shadow: 0 0 30px rgba(171, 196, 255, 0.3);
+}
+
+.seasonTitle {
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+  background: linear-gradient(135deg, #816cf9, #abc4ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.seasonDescription {
+  font-size: 1.1rem;
+  color: #abc4ff;
+  margin: 0;
+  font-weight: 500;
+}
+
 .content {
   max-width: 1200px;
   margin: 0 auto;
@@ -134,6 +163,18 @@
 
   .title {
     font-size: 1.5rem;
+  }
+
+  .seasonBanner {
+    padding: 1.5rem 1rem;
+  }
+
+  .seasonTitle {
+    font-size: 1.5rem;
+  }
+
+  .seasonDescription {
+    font-size: 0.9rem;
   }
 
   .table th, .table td {

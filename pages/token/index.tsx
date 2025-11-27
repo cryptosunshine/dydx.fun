@@ -65,30 +65,30 @@ export default function TokenPage() {
   return (
     <div className="token-page">
       <Head>
-        <title>$BHJ Token | BlockHero</title>
+        <title>$HERO Token | BlockHero</title>
       </Head>
 
       <canvas ref={canvasRef} className="particle-background"></canvas>
       
       <div className="token-content">
-        <h1 className="token-title">$BlockHeroJup</h1>
-        <p className="token-description">Just a Game</p>
+        <h1 className="token-title">$Block Hero Game Token</h1>
+        <p className="token-description">Compete for top rankings, earn $HERO rewards, and connect with players worldwide. Season 1 is LIVE!</p>
         
         <div className="token-info">
           <div className="token-info-item">
-            <h3>Token Mint Address</h3>
-            <p className="token-address">3rdBzcQNdbVKTPNgjELDvbZt8h1P9ghTcncNPzZxjups</p>
+            <h3>Token Address</h3>
+            <p className="token-address">...</p>
           </div>
           
           <div className="token-info-item">
             <h3>Blockchain</h3>
-            <p>Solana</p>
+            <p>Monad Network</p>
           </div>
         </div>
         
         <div className="token-buttons">
-        <button className="primary-button" onClick={() => window.open("https://jup.ag/studio/3rdBzcQNdbVKTPNgjELDvbZt8h1P9ghTcncNPzZxjups", "_blank")}>
-            Jupiter Studio
+        <button className="primary-button" onClick={() => window.open("https://nad.fun/tokens/", "_blank")}>
+            Nad.fun
           </button>
           <button className="secondary-button" onClick={() => router.push("/")}>
             Back to Game
@@ -192,8 +192,8 @@ export default function TokenPage() {
         }
         
         .primary-button {
-          background: gold;
-          color: black;
+          background: #7562e4;
+          color: white;
         }
         
         .primary-button:hover {

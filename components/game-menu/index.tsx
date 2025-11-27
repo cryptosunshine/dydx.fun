@@ -69,7 +69,7 @@ export default function GameMenu({ onScoreUpdate }: GameMenuProps) {
       }
 
       if (!highScore) {
-        alert("No score to upload!");
+        alert("No score to submit!");
         return;
       }
 
@@ -87,7 +87,7 @@ export default function GameMenu({ onScoreUpdate }: GameMenuProps) {
       const data = await response.json();
 
       if (data.success) {
-        alert("Score uploaded successfully!");
+        alert("Score submitted successfully!");
         if (onScoreUpdate) {
           onScoreUpdate();
         }
@@ -95,11 +95,11 @@ export default function GameMenu({ onScoreUpdate }: GameMenuProps) {
         (window as any).highscore = null;
         setHighScore(null);
       } else {
-        alert(data.message || "Failed to upload score");
+        alert(data.message || "Failed to submit score");
       }
     } catch (error) {
       console.error("Error uploading score:", error);
-      alert("Failed to upload score. Please try again.");
+      alert("Failed to submit score. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -107,44 +107,38 @@ export default function GameMenu({ onScoreUpdate }: GameMenuProps) {
 
   const connectWallet = async () => {
     try {
-      // 检查是否在浏览器环境
       if (typeof window === "undefined") {
-        throw new Error("Please use a browser with Phantom wallet");
+        return;
       }
 
-      const { solana } = window as any;
+      const { ethereum } = window as any;
 
-      // 检查 Phantom 钱包是否安装
-      if (!solana) {
-        throw new Error("Please install Phantom wallet first");
+      if (!ethereum) {
+        window.open("https://metamask.io/download/", "_blank");
+        throw new Error("Please install MetaMask first");
       }
 
-      if (!solana.isPhantom) {
-        throw new Error("Please install Phantom wallet first");
-      }
-
-      // 检查是否已经连接
-      if (solana.isConnected) {
-        throw new Error("Wallet is already connected");
-      }
-
-      // 连接钱包
-      const response = await solana.connect();
-      console.log("Wallet connected:", response.publicKey.toString());
-
-      // 更新状态
-      setWalletAddress(response.publicKey.toString());
-      setProvider(solana);
-
-      // 监听钱包断开连接事件
-      solana.on("disconnect", () => {
-        console.log("Wallet disconnected");
-        setWalletAddress("");
-        setProvider(null);
-        // 清空 highscore
-        (window as any).highscore = null;
-        setHighScore(null);
+      const accounts = await ethereum.request({
+        method: "eth_requestAccounts",
       });
+
+      if (accounts && accounts.length > 0) {
+        const account = accounts[0];
+        console.log("Wallet connected:", account);
+        setWalletAddress(account);
+        setProvider(ethereum);
+
+        ethereum.on("accountsChanged", (newAccounts: string[]) => {
+          if (newAccounts.length > 0) {
+            setWalletAddress(newAccounts[0]);
+          } else {
+            setWalletAddress("");
+            setProvider(null);
+            (window as any).highscore = null;
+            setHighScore(null);
+          }
+        });
+      }
     } catch (error: any) {
       console.error("Wallet connection error:", error);
       alert(error.message || "Failed to connect wallet");
@@ -152,41 +146,23 @@ export default function GameMenu({ onScoreUpdate }: GameMenuProps) {
   };
 
   const disconnectWallet = async () => {
-    try {
-      const { solana } = window as any;
-
-      if (!solana) {
-        throw new Error("Phantom wallet not found");
-      }
-
-      // 检查是否已连接
-      if (!solana.isConnected) {
-        throw new Error("Wallet is not connected");
-      }
-
-      // 断开钱包连接
-      await solana.disconnect();
-
-      // 更新状态
-      setWalletAddress("");
-      setProvider(null);
-      console.log("Wallet disconnected successfully");
-    } catch (error: any) {
-      console.error("Wallet disconnection error:", error);
-      alert(error.message || "Failed to disconnect wallet");
-    }
+    setWalletAddress("");
+    setProvider(null);
+    console.log("Wallet disconnected (local state cleared)");
   };
 
-  // 添加自动重连逻辑
+  // Auto-connect logic
   useEffect(() => {
     const autoConnect = async () => {
       try {
-        const { solana } = window as any;
+        const { ethereum } = window as any;
 
-        if (solana && solana.isPhantom) {
-          const response = await solana.connect();
-          setWalletAddress(response.publicKey.toString());
-          setProvider(solana);
+        if (ethereum) {
+          const accounts = await ethereum.request({ method: "eth_accounts" });
+          if (accounts && accounts.length > 0) {
+            setWalletAddress(accounts[0]);
+            setProvider(ethereum);
+          }
         }
       } catch (error) {
         console.error("Auto-connect error:", error);
@@ -261,12 +237,12 @@ export default function GameMenu({ onScoreUpdate }: GameMenuProps) {
           </>
         ) : (
           <div className="connect-button" onClick={connectWallet}>
-            Phantom
+            Connect Wallet
           </div>
         )}
         {highScore !== null && (
           <div className="header-button" onClick={() => send()}>
-            {loading ? "Uploading..." : "Upload score"}
+            {loading ? "Submitting..." : "Submit Score"}
           </div>
         )}
 
@@ -280,14 +256,14 @@ export default function GameMenu({ onScoreUpdate }: GameMenuProps) {
             }
           }}
         >
-          Rankings
+          Leaderboard
         </div>
 
         <div
           className="token-button"
           onClick={() => router.push("/token")}
         >
-          🪙<div > $BHJ</div>
+          🪙<div > $HERO Token</div>
         </div>
       </div>
     </>
