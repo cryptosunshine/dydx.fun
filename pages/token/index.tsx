@@ -77,7 +77,7 @@ export default function TokenPage() {
         <div className="token-info">
           <div className="token-info-item">
             <h3>Token Address</h3>
-            <p className="token-address">...</p>
+            <p className="token-address">0x4244BB4742eDb4aAc449627c765fCed9c2637777</p>
           </div>
           
           <div className="token-info-item">
@@ -87,7 +87,7 @@ export default function TokenPage() {
         </div>
         
         <div className="token-buttons">
-        <button className="primary-button" onClick={() => window.open("https://nad.fun/tokens/", "_blank")}>
+        <button className="primary-button" onClick={() => window.open("https://nad.fun/tokens/0x4244BB4742eDb4aAc449627c765fCed9c2637777", "_blank")}>
             Nad.fun
           </button>
           <button className="secondary-button" onClick={() => router.push("/")}>

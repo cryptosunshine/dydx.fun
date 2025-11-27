@@ -13,6 +13,7 @@ const App = ({ Component, pageProps }: AppProps) => {
   const queryClient = new QueryClient();
   const router = useRouter();
   const [isScriptsLoaded, setIsScriptsLoaded] = useState(false);
+  const [isReady, setIsReady] = useState(false);
 
   useEffect(() => {
     // 添加一个标记，防止重复加载
@@ -57,10 +58,23 @@ const App = ({ Component, pageProps }: AppProps) => {
     // 清理函数
     return () => {
       scriptElements.forEach(script => {
-        document.body.removeChild(script);
+        if (document.body.contains(script)) {
+          document.body.removeChild(script);
+        }
       });
     };
   }, []);
+
+  // 脚本加载完成后等待2秒再显示内容，确保 C2 runtime 完全初始化
+  useEffect(() => {
+    if (isScriptsLoaded) {
+      const timer = setTimeout(() => {
+        setIsReady(true);
+      }, 1000); // 增加到2秒
+
+      return () => clearTimeout(timer);
+    }
+  }, [isScriptsLoaded]);
 
   // 多语言配置
   const DefaultLocale = "en";
@@ -86,11 +100,23 @@ const App = ({ Component, pageProps }: AppProps) => {
         });
       }
     };
+
+    // 监听路由变化，如果切换到首页则完全重新加载页面
+    const handleRouteChangeStart = (url: string) => {
+      if ((url === '/' || url === '/home') && router.pathname !== '/' && router.pathname !== '/home') {
+        // 从其他页面返回游戏页面时，强制完整页面重载
+        window.location.href = url;
+      }
+    };
+
     router.events.on("routeChangeComplete", handleRouteChange);
+    router.events.on("routeChangeStart", handleRouteChangeStart);
+    
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
+      router.events.off("routeChangeStart", handleRouteChangeStart);
     };
-  }, [router.events]);
+  }, [router.events, router.pathname]);
 
   return (
     <>
@@ -109,8 +135,8 @@ const App = ({ Component, pageProps }: AppProps) => {
           messages={messages}
         >
           <Layout>
-            {isScriptsLoaded ? (
-              <Component {...pageProps} />
+            {isReady ? (
+              <Component {...pageProps} key={router.pathname} />
             ) : (
               <div style={{
                 height: '100vh',
